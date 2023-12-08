@@ -55,7 +55,7 @@ DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray<T> &other)
             if(array_ptr)
                 delete array_ptr.get();
             size = other.size;
-            array_ptr(size);
+            array_ptr = new T[size];
         }
 
         for (size_t i = 0; i < size; i++)
