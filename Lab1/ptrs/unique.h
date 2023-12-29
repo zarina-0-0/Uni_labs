@@ -1,6 +1,8 @@
 #ifndef INC_3SEM_UNIQUE_H
 #define INC_3SEM_UNIQUE_H
 
+#include <iostream>
+
 template<class T>
 class unq_ptr{ //similar size to raw ptr
 
@@ -58,7 +60,7 @@ public:
     unq_ptr(unq_ptr& other) = delete;
     unq_ptr(unq_ptr&& other){
         auto temp = other.release();
-        delete object;
+        delete [] object;
         object = temp;
     };
 
@@ -76,7 +78,7 @@ public:
 
     unq_ptr<T> operator=(const unq_ptr& obj) = delete;
 
-    ~unq_ptr(){if(object){ delete object; }};
+    ~unq_ptr(){if(object){ delete [] object; }};
 
 };
 

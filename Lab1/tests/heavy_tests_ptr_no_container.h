@@ -7,31 +7,21 @@
 #include "../ptrs/unique.h"
 #include <vector>
 
-using namespace std;
 using namespace chrono;
 typedef high_resolution_clock C;
 
-shared_ptr<int> shared_ptr_one(new int(0));
-shared_ptr<int> shared_ptr_two(new int(1));
-shrd_ptr<int> my_shared_ptr_one(new int(2));
-shrd_ptr<int> my_shared_ptr_two(new int(3));
-
-unique_ptr<int> unique_ptr_one(new int(4));
-unique_ptr<int> unique_ptr_two(new int(5));
-unq_ptr<int> my_unique_ptr_one(new int(6));
-unq_ptr<int> my_unique_ptr_two(new int(7));
-
-vector<int*> leaking_vector(100);
-vector<unq_ptr<int>> my_unq_notleaking_vector(10);
-vector<shrd_ptr<int>> my_shrd_notleaking_vector(1000000);
-
-vector<unique_ptr<int>> unq_notleaking_vector(10);
-vector<shared_ptr<int>> shrd_notleaking_vector(1000000);
-
 
 void HEAVY_FUNCS_TESTS_SHRD(){
+    shared_ptr<int> shared_ptr_one(new int(0));
+    shared_ptr<int> shared_ptr_two(new int(1));
+    shrd_ptr<int> my_shared_ptr_one(new int(2));
+    shrd_ptr<int> my_shared_ptr_two(new int(3));
 
-    auto begin = C::now();;
+    vector<int*> leaking_vector(100);
+    vector<shrd_ptr<int>> my_shrd_notleaking_vector(1000000);
+    vector<shared_ptr<int>> shrd_notleaking_vector(1000000);
+
+    auto begin = C::now();
     for (int i = 0; i < 100000; i++) {
         my_shared_ptr_one.reset(new int(i));
     }
@@ -95,6 +85,15 @@ void HEAVY_FUNCS_TESTS_SHRD(){
 }
 
 void HEAVY_FUNCS_TESTS_UNQ(){
+    unique_ptr<int> unique_ptr_one(new int(4));
+    unique_ptr<int> unique_ptr_two(new int(5));
+    unq_ptr<int> my_unique_ptr_one(new int(6));
+    unq_ptr<int> my_unique_ptr_two(new int(7));
+
+    vector<int*> leaking_vector(100);
+    vector<unq_ptr<int>> my_unq_notleaking_vector(10);
+    vector<unique_ptr<int>> unq_notleaking_vector(10);
+
     auto begin = high_resolution_clock::now();
     for (int i = 0; i < 1000000; i++) {
         my_unique_ptr_one.swap(my_unique_ptr_two);

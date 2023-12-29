@@ -5,18 +5,16 @@
 #include <cassert>
 #include <utility>
 #include <vector>
-#include "../libs/colour.h"
 #include <ostream>
-#include <vector>
+#include "../libs/colour.h"
 #include "../ptrs/shared.cpp"
 #include "../ptrs/unique.cpp"
 
 using namespace std;
 
 
-int PASS = 0;
-int FAIL = 0;
-
+extern int PASS;
+extern int FAIL;
 
 void CONSTRUCTORS_TESTS_SHRD(){
     shrd_ptr<int> shared_ptr (new int(89));

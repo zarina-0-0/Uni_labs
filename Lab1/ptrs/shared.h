@@ -1,6 +1,8 @@
 #ifndef INC_3SEM_SHARED_H
 #define INC_3SEM_SHARED_H
 
+#include "iostream"
+
 template <class T>
 class shrd_ptr { //bigger than a raw pointer
 

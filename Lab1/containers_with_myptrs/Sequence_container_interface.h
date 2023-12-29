@@ -27,10 +27,13 @@ public:
     virtual Sequence<T>& Concat(Sequence<T>* list) = 0;
     virtual void Clear() = 0;
     virtual void Remove(int index) = 0;
+    virtual void Swap(int i, int j) = 0;
+    virtual void Resize(size_t) = 0;
 
     virtual T& operator[](int i) const = 0;
 
     std::string ToString() const;
+    //~Sequence();
 };
 
 template<class T>

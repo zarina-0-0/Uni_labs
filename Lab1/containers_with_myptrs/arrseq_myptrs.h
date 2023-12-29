@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "Sequence_container_interface.h"
-#include "darr_myptrs.cpp"
+#include "darr_myptrs.h"
 #include "../libs/except.h"
 
 template<class T>
@@ -17,6 +17,7 @@ private:
 
 public:
     ArraySequence(): the_array(){};
+    ArraySequence(size_t size): the_array(new DynamicArray<T>(size)){};
     ArraySequence(T* items, size_t the_size): the_array(new DynamicArray<T>(items, the_size)){};
     ArraySequence(shrd_ptr<T[]> items, size_t the_size){
         the_array = new DynamicArray<T>;
@@ -39,6 +40,8 @@ public:
     ArraySequence<T>&  Concat(Sequence<T>* seq) override;
     void Clear() override;
     void Remove(int index) override;
+    void Swap(int i, int j) override {the_array->swap_el(i,j);};
+    void Resize(size_t size) override {the_array->Resize(size);};
 
     T& operator[](int index) const override;
 

@@ -1,8 +1,5 @@
-#include "../containers_with_myptrs/Sequence_container_interface.h"
-#include "../containers_with_myptrs/arrseq_myptrs.cpp"
-#include "../containers_with_myptrs/darr_myptrs.cpp"
-
-int PASS = 0;
+#include "../containers_with_myptrs/arrseq_myptrs.h"
+#include "test_ptr_no_containers.h"
 
 void ARRAY_SEQUENCE_TEST(){
 

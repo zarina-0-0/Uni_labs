@@ -32,6 +32,16 @@ shrd_ptr<T>& shrd_ptr<T>::operator=(const shrd_ptr<T>& other) {
 }
 
 template<class T>
+shrd_ptr<T[]>& shrd_ptr<T[]>::operator=(const shrd_ptr<T[]>& other) {
+    if(other){
+        object = other.object;
+        use_count = other.use_count;
+    }
+    ++(*use_count);
+    return *this;
+}
+
+template<class T>
 shrd_ptr<T>& shrd_ptr<T>::operator=(shrd_ptr<T>&& other) noexcept{
     object = other.object;
     use_count = other.use_count;
@@ -165,6 +175,9 @@ shrd_ptr<T[]>::operator bool() const {
 template class shrd_ptr<int>;
 template class shrd_ptr<char>;
 template class shrd_ptr<double>;
+template class shrd_ptr<int[]>;
+template class shrd_ptr<char[]>;
+template class shrd_ptr<double[]>;
 
 #endif
 

@@ -2,7 +2,6 @@
 #define arrseq_with_ptrs_cpp
 
 #include "arrseq_myptrs.h"
-#include "../containers_with_myptrs/darr_myptrs.h"
 
 template<class T>
 T& ArraySequence<T>::Get(int i) const{
@@ -121,5 +120,13 @@ template<class T>
 T& ArraySequence<T>::operator[](int index) const{
     return the_array->operator[](index);
 }
+
+template class ArraySequence<int>;
+template class ArraySequence<int*>;
+template class ArraySequence<char>;
+template class ArraySequence<char*>;
+template class ArraySequence<double>;
+template class ArraySequence<double*>;
+template class ArraySequence<complex<double>>;
 
 #endif

@@ -1,8 +1,8 @@
 #ifndef INC_3SEM_LISTSEQ_WITH_PTRS_H
 #define INC_3SEM_LISTSEQ_WITH_PTRS_H
 
+#include "linkedlist.h"
 #include "Sequence_container_interface.h"
-#include "linkedlist.cpp"
 
 template<class T>
 
@@ -16,25 +16,26 @@ public:
     ListSequence();
     ListSequence(const ListSequence<T> & list);
 
-    ~ListSequence() override;
-
-    size_t GetLength() const override;
-    T GetFirst() const override; //искл
-    T GetLast() const override;  //искл
-    T Get(int index) const override;  //искл
-    Sequence<T> *GetSubSequence(int start, int end) const override; //искл
+    size_t GetLength() const override {the_list->GetSize();};
+    T& GetFirst() const override {the_list->GetFirst();};
+    T& GetLast() const override {the_list->GetLast();};
+    T& Get(int index) const override {the_list->Get(index)->data;};
+    Sequence<T>& GetSubSequence(int start, int end) const override;
 
     void Append(T item) override;
     void Prepend(T item) override;
-    void InsertAt(T item, int index) override; //исключения
+    void InsertAt(T item, int index) override;
     void Set(T item, int index) override;
-    Sequence<T>* Concat(Sequence<T> *list) override;
-    void clear() override;
-    //Sequence<T>* Remove(int index) override;
-    void remove(int index) override;
+    void Swap(int, int) override;
+    void Resize(size_t) override;
+    Sequence<T>& Concat(Sequence<T> *list) override;
+    void Clear() override;
+    void Remove(int index) override;
 
 
-    T & operator[] (int i) const override;
+    T& operator[] (int i) const override;
+
+    ~ListSequence();
 };
 
 

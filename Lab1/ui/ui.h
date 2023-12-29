@@ -1,7 +1,14 @@
-#include <complex>
-#include "../tests/test_derived.h"
-#include "../libs/except.h"
-#include "../libs/colour.h"
+#ifndef INC_UI_H
+#define INC_UI_H
+
+//#include "../containers_with_myptrs/Sequence_container_interface.h"
+//#include "../ptrs/shared.h"
+//#include "../ptrs/unique.h"
+//#include "../libs/colour.h"
+//#include "../containers_with_myptrs/arrseq_myptrs.h"
+#include "../tests/test_ptr_container.h"
+#include "../tests/test_ptr_no_containers.h"
+#include "../tests/heavy_tests_ptr_no_container.h"
 
 
 #define HELLO  "Let's create sequences and do different stuff with them!\n"
@@ -33,28 +40,23 @@
 #define EXIT_ " EXIT"
 #define CHAR_ " Char"
 
-
+int data_type_act(int type, int size);
+template<typename T> void actions_from_menu(Sequence<T>*, int, T);
+template<typename T>T check_input_type(T* res, int down, int up);
+template<typename T>T check_input_size(T* res);
+template<typename T>T check_input_func(T* res);
+template<typename T>T check_input_index(T* res, int the_seq_size);
+template<typename T>T check_input_elem(T* res);
 int mini_main();
-int& funcs();
-int& size();
-int& actions_from_menu();
+int funcs();
+int size();
+int data();
 void menu();
 
-int data_type_act(int type, int size);
-
-int* input = unq_ptr<int>(new int(0)).get();
-int* the_size = unq_ptr<int>(new int(0)).get();
-int* input_func = unq_ptr<int>(new int(0)).get();
-
-template<typename T> T* data_type_act(int type, int size);
-template<typename T> void func(Sequence<T> *seq, int& act, T& elem);
-template<typename T>T& check_input_type(T* res);
-template<typename T>T& check_input_size(T* res);
-template<typename T>T& check_input_func(T* res);
-template<typename T>T& check_input_index(T* res, int the_seq_size);
-template<typename T>T& check_input_elem(T* res);
-
-int the_seq_size = 0;
+extern int* input;
+extern int* the_size;
+extern int* input_func;
+extern int the_seq_size;
 
 enum class SEQTYPE{
     EXIT = 1,
@@ -85,3 +87,5 @@ enum class FUNCS{
     CLEAR,
     SEE
 };
+
+#endif

@@ -1,9 +1,9 @@
-
+#include <complex>
 #include "listseq_myptrs.h"
 
 template<class T>
 ListSequence<T>::ListSequence(){
-    the_list = new LinkedList<T> ();
+    the_list = new LinkedList<T>();
 }
 
 template<class T>
@@ -14,25 +14,6 @@ ListSequence<T>::ListSequence(T *items, size_t size){
 template<class T>
 ListSequence<T>::ListSequence(const ListSequence<T> & list){
     the_list = new LinkedList<T>(*list.the_list);
-}
-
-template<class T>
-size_t ListSequence<T>::GetLength() const{
-    return the_list->GetLenght();
-}
-
-template<class T>
-T ListSequence<T>::GetFirst() const{
-    return the_list->GetFirst();
-}
-
-template<class T>
-T ListSequence<T>::GetLast() const{
-    return the_list->GetLast();
-}
-template<class T>
-T ListSequence<T>::Get(int index) const{
-    return the_list->Get(index);
 }
 
 template<class T>
@@ -47,7 +28,7 @@ void ListSequence<T>::Prepend(T item){
 
 template<class T>
 void ListSequence<T>::InsertAt(T item, int index){
-    the_list->InsertAt(item, index);
+    the_list->insert(item, index);
 }
 
 template<class T>
@@ -70,7 +51,7 @@ void ListSequence<T>::Set(T item, int index){
 //}
 
 template<class T>
-void ListSequence<T>::clear(){
+void ListSequence<T>::Clear(){
     for(int i = 0; i < this->GetLength(); i++){
         this->Set(0, i);
     }
@@ -84,11 +65,6 @@ void ListSequence<T>::clear(){
 //}
 
 template<class T>
-void ListSequence<T>::remove(int i){
-
-}
-
-template<class T>
 T &ListSequence<T>::operator[](int index) const{
     return the_list->operator[](index);
 }
@@ -97,3 +73,10 @@ template<class T>
 ListSequence<T>::~ListSequence(){
     delete the_list;
 }
+
+template class ListSequence<int>;
+template class ListSequence<int*>;
+template class ListSequence<char>;
+template class ListSequence<char*>;
+template class ListSequence<double>;
+template class ListSequence<double*>;

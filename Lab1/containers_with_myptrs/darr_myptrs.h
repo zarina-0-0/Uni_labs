@@ -2,11 +2,12 @@
 #define INC_3SEM_DARR_MYPTRS_H
 
 #include <iostream>
-#include "../ptrs/shared.h"
+#include <complex>
+#include "../ptrs/shared.cpp"
 #include "../libs/except.h"
 
 template <class T>
-class DynamicArray{
+class DynamicArray {
 
     friend std::ostream& operator <<(std::ostream &output, DynamicArray<T> &arr){
         for(size_t i = 0; i < arr.GetSize(); i++){
@@ -20,7 +21,6 @@ class DynamicArray{
         }
         return input;
     };
-
 public:
 
     DynamicArray(): size(0){};
@@ -40,7 +40,7 @@ public:
     DynamicArray& operator=(const DynamicArray&);
     shrd_ptr<T[]>& operator*(){return array_ptr;};
 
-    ~DynamicArray(){};
+    ~DynamicArray() = default;
 
 private:
     size_t size;

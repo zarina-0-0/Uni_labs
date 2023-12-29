@@ -2,7 +2,6 @@
 #define dynamic_array_ptr_cpp
 
 #include "darr_myptrs.h"
-#include "../libs/except.h"
 
 using namespace std;
 
@@ -12,7 +11,6 @@ DynamicArray<T>::DynamicArray(T *items, size_t the_size): array_ptr(the_size){
     for(int i = 0; i < the_size; i++){
         array_ptr[i] = items[i];
     }
-    delete[] items;
 }
 
 template <class T>
@@ -55,11 +53,11 @@ DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray<T> &other)
             if(array_ptr)
                 delete array_ptr.get();
             size = other.size;
-            array_ptr = new T[size];
+            array_ptr = shrd_ptr<T[]>(size);
         }
 
         for (size_t i = 0; i < size; i++)
-            array_ptr[i] = other.array_ptr[i];
+            array_ptr[i] = other.GetFrom(i);
     }
 
     return *this;
@@ -93,7 +91,7 @@ void DynamicArray<T>::Clear(){
     else{
         array_ptr.reset(new T[GetSize()]);
         for(int i = 0; i < GetSize(); i++){
-            array_ptr.get()[i] = T(0);
+            array_ptr = shrd_ptr<T[]>(GetSize());
         }
     }
 }
@@ -115,10 +113,14 @@ void DynamicArray<T>::swap_el(int i, int j){
         array_ptr[i] = array_ptr[j];
         array_ptr[j] = temp;
     }
-}
+};
 
 template class DynamicArray<int>;
-template class DynamicArray<double>;
+template class DynamicArray<int*>;
 template class DynamicArray<char>;
+template class DynamicArray<char*>;
+template class DynamicArray<double>;
+template class DynamicArray<double*>;
+template class DynamicArray<complex<double>>;
 
 #endif
