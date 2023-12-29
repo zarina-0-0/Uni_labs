@@ -15,6 +15,7 @@ add_executable(3sem main.cpp
         tests/test_ptr_no_containers.cpp
         tests/test_ptr_container.cpp
         tests/test_derived.cpp
+        tests/heavy_tests_ptr_no_container.cpp
 )
 #add_executable(tests
 #        tests/test_derived.h

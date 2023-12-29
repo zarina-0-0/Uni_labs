@@ -75,9 +75,6 @@ void FUNCS_TESTS_SHRD(){
     assert(*shared_ptr.get() == 9 && *more_shared_ptr.get() == 89);
     assert(shared_ptr.count() == 1 && more_shared_ptr.count() == 1);
 
-    shared_ptr.reset();
-    assert(shared_ptr.get() == nullptr);
-
     int* check = new int(7);
     shared_ptr.reset(check);
     assert(*shared_ptr.get() == 7);

@@ -2,6 +2,7 @@
 #define INC_3SEM_UNIQUE_H
 
 #include <iostream>
+#include <vector>
 
 template<class T>
 class unq_ptr{ //similar size to raw ptr

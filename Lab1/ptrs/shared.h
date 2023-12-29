@@ -80,9 +80,7 @@ public:
     T* get() const { return object; };
     size_t& count() { return *use_count; };
 
-    void reset();
     void reset(T *);
-
     bool owner_before(const shrd_ptr &other);
 
     T& operator*() { return *object; };

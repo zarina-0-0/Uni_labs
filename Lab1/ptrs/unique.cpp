@@ -1,5 +1,4 @@
 #include "unique.h"
-#include <vector>
 
 template<class T>
 T* unq_ptr<T>::release(){

@@ -43,8 +43,6 @@ template<class T>
 shrd_ptr<T>& shrd_ptr<T>::operator=(shrd_ptr<T>&& other) noexcept{
     object = other.object;
     use_count = other.use_count;
-    delete other.object;
-    delete other.use_count;
     return *this;
 }
 
@@ -56,48 +54,6 @@ void shrd_ptr<T>::swap(shrd_ptr& ptr) {
     ptr.use_count = use_count;
     object = temp;
     use_count = ref;
-}
-
-template<class T>
-void shrd_ptr<T>::reset() {
-    if(!use_count) {
-        return;
-    }
-    if(*use_count > 1) {
-        (*use_count)--;
-        delete object;
-        object = nullptr;
-    }else if(*use_count == 1){
-        delete object;
-        object = nullptr;
-        delete use_count;
-        use_count = nullptr;
-    }else if(*use_count == 0) {
-        object = nullptr;
-    } else {
-       return;
-    }
-}
-
-template<class T>
-void shrd_ptr<T[]>::reset() {
-    if(!use_count) {
-        return;
-    }
-    if(*use_count > 1) {
-        (*use_count)--;
-        delete [] object;
-        object = nullptr;
-    }else if(*use_count == 1){
-        delete [] object;
-        object = nullptr;
-        delete use_count;
-        use_count = nullptr;
-    }else if(*use_count == 0) {
-        object = nullptr;
-    } else {
-        return;
-    }
 }
 
 template<class T>
