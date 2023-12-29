@@ -1,20 +1,7 @@
-#ifndef TEST_PTR_NO_CONTAINERS_h
-#define TEST_PTR_NO_CONTAINERS_h
+#include "tests.h"
 
-#include <iostream>
-#include <cassert>
-#include <utility>
-#include <vector>
-#include <ostream>
-#include "../libs/colour.h"
-#include "../ptrs/shared.cpp"
-#include "../ptrs/unique.cpp"
-
-using namespace std;
-
-
-extern int PASS;
-extern int FAIL;
+int PASS = 0;
+int FAIL = 0;
 
 void CONSTRUCTORS_TESTS_SHRD(){
     shrd_ptr<int> shared_ptr (new int(89));
@@ -158,5 +145,3 @@ void OPERATOR_TESTS_UNQ(){
     cout << GREEN << "unq: Passed tests for operators" << DEF << endl;
     PASS++;
 }
-
-#endif

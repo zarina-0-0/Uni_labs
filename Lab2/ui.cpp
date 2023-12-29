@@ -4,6 +4,7 @@
 #include "bubblesort.h"
 #include "cocktailsort.h"
 #include "genseq.h"
+#include "test_myptrs.h"
 
 using namespace std;
 using namespace chrono;

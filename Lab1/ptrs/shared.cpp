@@ -1,5 +1,3 @@
-#ifndef INC_3SEM_SHARED_CPP
-#define INC_3SEM_SHARED_CPP
 #include "shared.h"
 
 template<class T>
@@ -178,9 +176,6 @@ template class shrd_ptr<double>;
 template class shrd_ptr<int[]>;
 template class shrd_ptr<char[]>;
 template class shrd_ptr<double[]>;
-
-#endif
-
 
 
 

@@ -1,6 +1,3 @@
-#ifndef arrseq_with_ptrs_cpp
-#define arrseq_with_ptrs_cpp
-
 #include "arrseq_myptrs.h"
 
 template<class T>
@@ -128,5 +125,3 @@ template class ArraySequence<char*>;
 template class ArraySequence<double>;
 template class ArraySequence<double*>;
 template class ArraySequence<complex<double>>;
-
-#endif

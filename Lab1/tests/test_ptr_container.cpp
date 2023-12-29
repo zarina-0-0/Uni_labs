@@ -1,5 +1,4 @@
-#include "../containers_with_myptrs/arrseq_myptrs.h"
-#include "test_ptr_no_containers.h"
+#include "tests.h"
 
 void ARRAY_SEQUENCE_TEST(){
 

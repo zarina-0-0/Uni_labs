@@ -1,15 +1,7 @@
 #ifndef INC_UI_H
 #define INC_UI_H
 
-//#include "../containers_with_myptrs/Sequence_container_interface.h"
-//#include "../ptrs/shared.h"
-//#include "../ptrs/unique.h"
-//#include "../libs/colour.h"
-//#include "../containers_with_myptrs/arrseq_myptrs.h"
-#include "../tests/test_ptr_container.h"
-#include "../tests/test_ptr_no_containers.h"
-#include "../tests/heavy_tests_ptr_no_container.h"
-
+#include "../tests/tests.h"
 
 #define HELLO  "Let's create sequences and do different stuff with them!\n"
 #define DATA_STRUCT "Choose type of sequence to work with: \n"

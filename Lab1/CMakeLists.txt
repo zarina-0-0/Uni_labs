@@ -12,6 +12,9 @@ add_executable(3sem main.cpp
         containers_with_myptrs/arrseq_myptrs.cpp
         containers_with_myptrs/darr_myptrs.cpp
         containers_with_myptrs/Sequence_container_interface.h
+        tests/test_ptr_no_containers.cpp
+        tests/test_ptr_container.cpp
+        tests/test_derived.cpp
 )
 #add_executable(tests
 #        tests/test_derived.h

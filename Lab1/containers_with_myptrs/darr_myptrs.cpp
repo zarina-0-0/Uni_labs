@@ -1,6 +1,3 @@
-#ifndef dynamic_array_ptr_cpp
-#define dynamic_array_ptr_cpp
-
 #include "darr_myptrs.h"
 
 using namespace std;
@@ -123,4 +120,3 @@ template class DynamicArray<double>;
 template class DynamicArray<double*>;
 template class DynamicArray<complex<double>>;
 
-#endif

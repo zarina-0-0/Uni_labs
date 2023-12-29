@@ -1,15 +1,7 @@
-#ifndef HEAVY_TEST_PTR_NO_CONTAINERS_h
-#define HEAVY_TEST_PTR_NO_CONTAINERS_h
-
-#include <chrono>
-#include "../libs/colour.h"
-#include "../ptrs/shared.h"
-#include "../ptrs/unique.h"
-#include <vector>
+#include "tests.h"
 
 using namespace chrono;
 typedef high_resolution_clock C;
-
 
 void HEAVY_FUNCS_TESTS_SHRD(){
     shared_ptr<int> shared_ptr_one(new int(0));
@@ -110,5 +102,3 @@ void HEAVY_FUNCS_TESTS_UNQ(){
     auto elapss = duration_cast<milliseconds>(ee - begg);
     cout << BLUE << "Time of swaping library unique pts: " << DEF << (elapss.count()) << BLUE << " ms" << DEF << endl;
 }
-
-#endif

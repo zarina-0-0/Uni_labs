@@ -1,7 +1,5 @@
-#ifndef INC_3SEM_UNIQUE_CPP
-#define INC_3SEM_UNIQUE_CPP
-
 #include "unique.h"
+#include <vector>
 
 template<class T>
 T* unq_ptr<T>::release(){
@@ -29,8 +27,9 @@ void unq_ptr<T>::reset(T* obj) {
     object = obj;
 }
 
-#endif
-
 template class unq_ptr<int>;
 template class unq_ptr<char>;
 template class unq_ptr<double>;
+template class unq_ptr<std::vector<int>>;
+template class unq_ptr<std::vector<double>>;
+template class unq_ptr<std::vector<char>>;
