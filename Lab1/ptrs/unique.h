@@ -65,7 +65,7 @@ public:
         object = temp;
     };
 
-    void swap(unq_ptr);
+    void swap(unq_ptr&);
     T* get(){return object;};
     T* release();
     void reset(T*);
