@@ -67,7 +67,6 @@ class shrd_ptr<T[]>{ //for array
 private:
     T* object;
     size_t* use_count;
-    friend class shrd_ptr;
 
 public:
 

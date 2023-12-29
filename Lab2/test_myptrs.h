@@ -1,6 +1,7 @@
 #ifndef LAB2_TEST_MYPTRS_H
 #define LAB2_TEST_MYPTRS_H
 
+#include "cassert"
 #include "ISorter.h"
 #include "../Lab1/containers_with_myptrs/arrseq_myptrs.h"
 #include "bubblesort.h"
