@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include "../containers_with_myptrs/arrseq_myptrs.h"
+#include "../containers_with_myptrs/Sequence_container_interface.h"
 
 template<class T>
 class unq_ptr{ //similar size to raw ptr
@@ -15,13 +17,13 @@ public:
     explicit unq_ptr(T* obj): object(obj){};
     unq_ptr(const unq_ptr& other) = delete; // prohibited copy constructor
     unq_ptr(unq_ptr&& other){
-        object = other.release();
+        object = other.Release();
     }; //move constructor
 
-    void swap(unq_ptr&);
-    T* get() const {return object;};
-    T* release();
-    void reset(T*);
+    void Swap(unq_ptr&);
+    T* Get() const {return object;};
+    T* Release();
+    void Reset(T*);
 
     operator bool() const;
 
@@ -31,7 +33,7 @@ public:
     unq_ptr<T> operator=(const unq_ptr&) = delete;
 
     unq_ptr& operator=(unq_ptr&& other) noexcept {
-        auto temp = other.release();
+        auto temp = other.Release();
         delete object;
         object = temp;
         return *this;
@@ -40,7 +42,7 @@ public:
     template<class T_Derived>
     requires std::derived_from<T_Derived, T>
     unq_ptr(unq_ptr<T_Derived>&& the_derived){
-        T_Derived* pder = the_derived.release();
+        T_Derived* pder = the_derived.Release();
         object = static_cast<T*>(pder);
     }
 
@@ -65,10 +67,10 @@ public:
         object = temp;
     };
 
-    void swap(unq_ptr&);
-    T* get(){return object;};
-    T* release();
-    void reset(T*);
+    void Swap(unq_ptr&);
+    T* Get(){return object;};
+    T* Release();
+    void Reset(T*);
 
     operator bool() const;
 
@@ -82,5 +84,34 @@ public:
     ~unq_ptr(){if(object){ delete [] object; }};
 
 };
+
+
+template<class T>
+T* unq_ptr<T>::Release(){
+    T* temp = object;
+    object = nullptr;
+    return temp;
+}
+
+template<class T>
+void unq_ptr<T>::Swap(unq_ptr& ptr){
+    T* temp = ptr.object;
+    ptr.object = object;
+    object = temp;
+}
+
+template<class T>
+unq_ptr<T>::operator bool() const{
+    return (object != nullptr);
+}
+
+
+template<class T>
+void unq_ptr<T>::Reset(T* obj) {
+    if (object != obj) {
+        delete object;
+        object = obj;
+    }
+}
 
 #endif //INC_3SEM_UNIQUE_H

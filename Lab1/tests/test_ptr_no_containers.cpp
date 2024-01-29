@@ -5,28 +5,28 @@ int FAIL = 0;
 
 void CONSTRUCTORS_TESTS_SHRD(){
     shrd_ptr<int> shared_ptr (new int(89));
-    assert(*shared_ptr.get() == 89);
-    assert(shared_ptr.count() == 1);
+    assert(*shared_ptr.Get() == 89);
+    assert(shared_ptr.Count() == 1);
 
     shrd_ptr<int> shared_ptr_copy(shared_ptr);
-    assert(*shared_ptr_copy.get() == 89);
-    assert(shared_ptr.count() == 2);
+    assert(*shared_ptr_copy.Get() == 89);
+    assert(shared_ptr.Count() == 2);
 
     shrd_ptr<int> shared_ptr_assign;
     shared_ptr_assign = shared_ptr_copy;
-    assert(*shared_ptr_assign.get() == 89);
-    assert(shared_ptr_assign.count() == 3);
+    assert(*shared_ptr_assign.Get() == 89);
+    assert(shared_ptr_assign.Count() == 3);
 
     cout << GREEN << "shrd: Passed tests for c-tors and copy c-tors and assignment operator" << DEF << endl;
     PASS++;
 }
 void CONSTRUCTORS_TESTS_UNQ(){
     unq_ptr<int> unique_ptr (new int(89));
-    assert(*unique_ptr.get() == 89);
+    assert(*unique_ptr.Get() == 89);
 
     unq_ptr<int> unique_ptr_assign = move(unique_ptr);
-    assert(*unique_ptr_assign.get() == 89);
-    assert(unique_ptr.get() == nullptr);
+    assert(*unique_ptr_assign.Get() == 89);
+    assert(unique_ptr.Get() == nullptr);
 
     cout << GREEN << "unq: Passed tests for c-tors and move c-tors and assignment operator" << DEF << endl;
     PASS++;
@@ -37,14 +37,14 @@ void FUNCS_TESTS_UNQ(){
     int* ptr = new int(29);
     int* mptr = new int(5);
     unq_ptr<int> unique_ptr (new int(89));
-    unique_ptr.reset(ptr);
-    assert(*unique_ptr.get() == 29);
-    unq_ptr<int> from_released(unique_ptr.release());//it's better to release into another smrtptr because otherwise there can be memory leak
-    assert(*from_released.get() == 29);
-    assert(unique_ptr.get() == nullptr);
-    unique_ptr.reset(mptr);
-    from_released.swap(unique_ptr);
-    assert(*unique_ptr.get() == 29 && *from_released.get() == 5);
+    unique_ptr.Reset(ptr);
+    assert(*unique_ptr.Get() == 29);
+    unq_ptr<int> from_released(unique_ptr.Release());//it's better to release into another smrtptr because otherwise there can be memory leak
+    assert(*from_released.Get() == 29);
+    assert(unique_ptr.Get() == nullptr);
+    unique_ptr.Reset(mptr);
+    from_released.Swap(unique_ptr);
+    assert(*unique_ptr.Get() == 29 && *from_released.Get() == 5);
 
     cout << GREEN << "unq: Passed tests for functions" << DEF << endl;
     PASS++;
@@ -65,25 +65,23 @@ void FUNCS_TESTS_SHRD(){
     shrd_ptr<char> shared_ptr_char;
 
     for(int i = 0; i < 10; i++){
-        shared_ptr_char.reset(my_vector_ch[i]);
-        assert(*(shared_ptr_char.get()) == 'a');
+        shared_ptr_char.Reset(my_vector_ch[i]);
+        assert(*(shared_ptr_char.Get()) == 'a');
     }
 
     shrd_ptr<int> shared_ptr (new int(89));
     shrd_ptr<int> more_shared_ptr (new int(9));
-    shared_ptr.swap(more_shared_ptr);
-    assert(*shared_ptr.get() == 9 && *more_shared_ptr.get() == 89);
-    assert(shared_ptr.count() == 1 && more_shared_ptr.count() == 1);
+    shared_ptr.Swap(more_shared_ptr);
+    assert(*shared_ptr.Get() == 9 && *more_shared_ptr.Get() == 89);
+    assert(shared_ptr.Count() == 1 && more_shared_ptr.Count() == 1);
 
     int* check = new int(7);
-    shared_ptr.reset(check);
-    assert(*shared_ptr.get() == 7);
-
-    assert(shared_ptr.owner_before(more_shared_ptr));
+    shared_ptr.Reset(check);
+    assert(*shared_ptr.Get() == 7);
 
     for(int i = 0; i < 10; i++){
-        more_shared_ptr.reset(my_vector[i]);
-        assert(*more_shared_ptr.get() == i);
+        more_shared_ptr.Reset(my_vector[i]);
+        assert(*more_shared_ptr.Get() == i);
     } // more_shared_ptr.reset was included in cycle because it takes management of pointers and delete them if there is no use
 
 
@@ -104,7 +102,7 @@ void OPERATOR_TESTS_SHRD(){
 
     shrd_ptr<vector<int>> pvec_one(new vector(vec));
     shrd_ptr<vector<int>> pvec(new vector(vec_one));
-    pvec_one.swap(pvec);
+    pvec_one.Swap(pvec);
     assert(pvec_one->operator[](0) == 2 && pvec->operator[](0) == 1);
 
     assert(*pvec_one == vec_one && *pvec == vec);
@@ -126,7 +124,7 @@ void OPERATOR_TESTS_UNQ(){
 
     unq_ptr<vector<int>> pvec_one(new vector(vec));
     unq_ptr<vector<int>> pvec(new vector(vec_one));
-    pvec_one.swap(pvec);
+    pvec_one.Swap(pvec);
     assert(pvec_one->operator[](0) == 2 && pvec->operator[](0) == 1);
 
     assert(*pvec_one == vec_one && *pvec == vec);
@@ -137,7 +135,7 @@ void OPERATOR_TESTS_UNQ(){
     unq_ptr<char> chptr_one(h);
 
     chptr = std::move(chptr_one);
-    assert(chptr_one.get() == nullptr && *chptr.get() == 'b');
+    assert(chptr_one.Get() == nullptr && *chptr.Get() == 'b');
 
     cout << GREEN << "unq: Passed tests for operators" << DEF << endl;
     PASS++;

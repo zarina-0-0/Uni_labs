@@ -3,34 +3,34 @@
 
 #include "../tests/tests.h"
 
-#define HELLO  "Let's create sequences and do different stuff with them!\n"
-#define DATA_STRUCT "Choose type of sequence to work with: \n"
-#define FUNCSY "\nHere are the options you can choose: \n"
-#define DATA_TYPE "Choose type of data in sequences: \n"
-#define CONCAT_ " Concat the this suquence with itself"
-#define GETFIRST_ " Get first element of the sequence"
-#define GETLAST_ " Get last element of the sequence"
-#define SUBSEQ_ " Get subsequence of the sequence"
-#define THE_SEQ "You've created the sequence: \n"
-#define GETLENGTH_ " Get length of the sequence"
-#define WR "Please check input and try again"
-#define GET_ " Get element of the sequence"
-#define SIZE "Enter the size of sequence: "
-#define COMPLEX_ " Complex numbers\n"
-#define PREP_ " Prepend the element"
-#define CLEAR_ " Clear the sequence"
-#define APP_ " Append the element"
-#define SEE_ " See the sequence\n"
-#define AT_ " Insert at the place"
-#define TEST " See some tests \n"
-#define INT_ " Integer numbers"
-#define E "Enter the elemet: "
-#define SET_ " Set the elemet"
-#define REAL_ " Real numbers"
-#define I "Enter the index: "
-#define BYE "Goodbye! \n"
-#define EXIT_ " EXIT"
-#define CHAR_ " Char"
+const string HELLO =  "Let's create sequences and do different stuff with them!\n",
+DATA_STRUCT = "Choose type of sequence to work with: \n",
+funcsy = "\nHere are the options you can choose: \n",
+DATA_TYPE = "Choose type of data in sequences: \n",
+CONCAT = " Concat the this suquence with itself",
+GETFIRST = " Get first element of the sequence",
+GETLAST = " Get last element of the sequence",
+SUBSEQ = " Get subsequence of the sequence",
+THE_SEQ = "You've created the sequence: \n",
+GETLENGTH = " Get length of the sequence",
+WR = "Please check input and try again",
+GET = " Get element of the sequence",
+SIZE = "Enter the size of sequence: ",
+COMPLEX = " Complex numbers\n",
+PREP = " Prepend the element",
+CLEAR = " Clear the sequence",
+APP = " Append the element",
+SEE = " See the sequence\n",
+AT = " Insert at the place",
+TEST = " See some tests \n",
+INT  = " Integer numbers",
+ENTER = "Enter the elemet: ",
+SET = " Set the elemet",
+REAL = " Real numbers",
+INDEX = "Enter the index: ",
+BYE = "Goodbye! \n",
+EXIT = " EXIT",
+CHAR = " Char";
 
 int data_type_act(int type, int size);
 template<typename T> void actions_from_menu(Sequence<T>*, int, T);
@@ -44,11 +44,6 @@ int funcs();
 int size();
 int data();
 void menu();
-
-extern int* input;
-extern int* the_size;
-extern int* input_func;
-extern int the_seq_size;
 
 enum class SEQTYPE{
     EXIT = 1,

@@ -18,13 +18,14 @@ public:
     virtual T& GetFirst() const = 0;
     virtual T& GetLast() const = 0;
     virtual T& Get(int index) const = 0;
-    virtual Sequence<T>& GetSubSequence(int start, int end) const = 0;
+
+    virtual Sequence<T>* GetSubSequence(int start, int end) = 0;
+    virtual Sequence<T>* Concat(Sequence<T>* list) = 0;
 
     virtual void Append(T item) = 0;
     virtual void Prepend(T item) = 0;
     virtual void InsertAt(T item, int index) = 0;
     virtual void Set(T item, int index) = 0;
-    virtual Sequence<T>& Concat(Sequence<T>* list) = 0;
     virtual void Clear() = 0;
     virtual void Remove(int index) = 0;
     virtual void Swap(int i, int j) = 0;
@@ -33,7 +34,7 @@ public:
     virtual T& operator[](int i) const = 0;
 
     std::string ToString() const;
-    //~Sequence();
+    virtual ~Sequence() = default;
 };
 
 template<class T>

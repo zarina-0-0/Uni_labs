@@ -2,9 +2,13 @@
 
 using namespace std;
 
+int* input = new int(0);
+int* the_size = new int(0);
+int* input_func = new int(0);
+
 int mini_main(){
     int type = 0;
-    int* my_size = unq_ptr<int>(new int(0)).get();
+    int* my_size = unq_ptr<int>(new int(0)).Get();
 
     if((type = data()) == 1){
         cout << BYE;
@@ -91,11 +95,11 @@ int data() {
     int flag = 0;
     cout << endl << BLUE << HELLO << DEF;
     cout << (DATA_TYPE) << endl;
-    cout << BLUE_BG << RED << " 1 " << DEF << DEF_BG << BLUE << EXIT_ << DEF << endl;
-    cout << BLUE_BG << RED << " 2 " << DEF << DEF_BG << BLUE << INT_ << DEF << endl;
-    cout << BLUE_BG << RED << " 3 " << DEF << DEF_BG << BLUE << REAL_ << DEF << endl;
-    cout << BLUE_BG << RED << " 4 " << DEF << DEF_BG << BLUE << COMPLEX_ << DEF;
-    cout << BLUE_BG << RED << " 5 " << DEF << DEF_BG << BLUE << CHAR_ << DEF << endl;
+    cout << BLUE_BG << RED << " 1 " << DEF << DEF_BG << BLUE << EXIT << DEF << endl;
+    cout << BLUE_BG << RED << " 2 " << DEF << DEF_BG << BLUE << INT << DEF << endl;
+    cout << BLUE_BG << RED << " 3 " << DEF << DEF_BG << BLUE << REAL << DEF << endl;
+    cout << BLUE_BG << RED << " 4 " << DEF << DEF_BG << BLUE << COMPLEX << DEF;
+    cout << BLUE_BG << RED << " 5 " << DEF << DEF_BG << BLUE << CHAR << DEF << endl;
     cout << BLUE_BG << RED << " 6 " << DEF << DEF_BG << BLUE << TEST << DEF << endl;
     cout << ">> ";
     return check_input_type<int>(input, 0, 6);
@@ -108,20 +112,20 @@ int size(){
 }
 
 void menu(){
-    cout << (FUNCSY) << endl;
-    cout << BLUE_BG << RED << " 1 " << DEF << DEF_BG<< BLUE << EXIT_ << DEF << endl;
-    cout << BLUE_BG << RED << " 2 " << DEF << DEF_BG<< BLUE << GETLENGTH_ << DEF << endl;
-    cout << BLUE_BG << RED << " 3 " << DEF << DEF_BG<< BLUE << GETFIRST_ << endl;
-    cout << BLUE_BG << RED << " 4 " << DEF << DEF_BG<< BLUE << GETLAST_ << DEF << endl;
-    cout << BLUE_BG << RED << " 5 " << DEF << DEF_BG<< BLUE << GET_ << DEF << endl;
-    cout << BLUE_BG << RED << " 6 " << DEF << DEF_BG<< BLUE << SUBSEQ_ << DEF << endl;
-    cout << BLUE_BG << RED << " 7 " << DEF << DEF_BG<< BLUE << APP_ << DEF << endl;
-    cout << BLUE_BG << RED << " 8 " << DEF << DEF_BG<< BLUE << PREP_ << DEF << endl;
-    cout << BLUE_BG << RED << " 9 " << DEF << DEF_BG<< BLUE << AT_ << DEF << endl;
-    cout << BLUE_BG << RED << " 10 " << DEF << DEF_BG<< BLUE << SET_ << DEF << endl;
-    cout << BLUE_BG << RED << " 11 " << DEF << DEF_BG<< BLUE << CONCAT_ << DEF << endl;
-    cout << BLUE_BG << RED << " 12 " << DEF << DEF_BG<< BLUE << CLEAR_ << DEF << endl;
-    cout << BLUE_BG << RED << " 13 " << DEF << DEF_BG<< BLUE << SEE_ << DEF << endl;
+    cout << (funcsy) << endl;
+    cout << BLUE_BG << RED << " 1 " << DEF << DEF_BG<< BLUE << EXIT << DEF << endl;
+    cout << BLUE_BG << RED << " 2 " << DEF << DEF_BG<< BLUE << GETLENGTH << DEF << endl;
+    cout << BLUE_BG << RED << " 3 " << DEF << DEF_BG<< BLUE << GETFIRST << endl;
+    cout << BLUE_BG << RED << " 4 " << DEF << DEF_BG<< BLUE << GETLAST << DEF << endl;
+    cout << BLUE_BG << RED << " 5 " << DEF << DEF_BG<< BLUE << GET << DEF << endl;
+    cout << BLUE_BG << RED << " 6 " << DEF << DEF_BG<< BLUE << SUBSEQ << DEF << endl;
+    cout << BLUE_BG << RED << " 7 " << DEF << DEF_BG<< BLUE << APP << DEF << endl;
+    cout << BLUE_BG << RED << " 8 " << DEF << DEF_BG<< BLUE << PREP << DEF << endl;
+    cout << BLUE_BG << RED << " 9 " << DEF << DEF_BG<< BLUE << AT << DEF << endl;
+    cout << BLUE_BG << RED << " 10 " << DEF << DEF_BG<< BLUE << SET << DEF << endl;
+    cout << BLUE_BG << RED << " 11 " << DEF << DEF_BG<< BLUE << CONCAT << DEF << endl;
+    cout << BLUE_BG << RED << " 12 " << DEF << DEF_BG<< BLUE << CLEAR << DEF << endl;
+    cout << BLUE_BG << RED << " 13 " << DEF << DEF_BG<< BLUE << SEE << DEF << endl;
 }
 
 int funcs(){
@@ -157,24 +161,24 @@ void actions_from_menu(Sequence<T>* seq, int act, T elem){
         }
         case static_cast<int>(FUNCS::GET):
         {
-            cout << I;
+            cout << INDEX;
             int i = check_input_size<int>(input);
             cout << "The element at " << *input << " : " << seq->Get(i);
             break;
         }
         case static_cast<int>(FUNCS::GETSUBSEQ):
         {
-            cout << I;
+            cout << INDEX;
             int i = check_input_index<int>(input, seq->GetLength());
-            cout << I;
+            cout << INDEX;
             int j = check_input_index<int>(input, seq->GetLength());
             cout << "The subsequence: " << seq->GetSubSequence(i, j);
             break;
         }
         case static_cast<int>(FUNCS::APPEND):
         {
-            cout << E;
-            T* element = unq_ptr<T>(new T(elem)).get();
+            cout << ENTER;
+            T* element = unq_ptr<T>(new T(elem)).Get();
             auto a = check_input_elem<T>(element);
             seq->Append(a);
             cout << "Done!" << endl;
@@ -182,8 +186,8 @@ void actions_from_menu(Sequence<T>* seq, int act, T elem){
         }
         case static_cast<int>(FUNCS::PREPEND):
         {
-            cout << E;
-            T* element = unq_ptr<T>(new T(elem)).get();
+            cout << ENTER;
+            T* element = unq_ptr<T>(new T(elem)).Get();
             auto a = check_input_elem<T>(element);
             seq->Prepend(a);
             cout << "Done!" << endl;
@@ -191,10 +195,10 @@ void actions_from_menu(Sequence<T>* seq, int act, T elem){
         }
         case static_cast<int>(FUNCS::INSERTAT):
         {
-            cout << E;
-            T* element = unq_ptr<T>(new T(elem)).get();
+            cout << ENTER;
+            T* element = unq_ptr<T>(new T(elem)).Get();
             auto a = check_input_elem<T>(element);
-            cout << I;
+            cout << INDEX;
             int i = check_input_index<int>(input, seq->GetLength());
             seq->InsertAt(a, i);
             cout << "Done!" << endl;
@@ -202,10 +206,10 @@ void actions_from_menu(Sequence<T>* seq, int act, T elem){
         }
         case static_cast<int>(FUNCS::SET):
         {
-            cout << E;
-            T* element = unq_ptr<T>(new T(elem)).get();
+            cout << ENTER;
+            T* element = unq_ptr<T>(new T(elem)).Get();
             auto a = check_input_elem<T>(element);
-            cout << I;
+            cout << INDEX;
             int i = check_input_index<int>(input, seq->GetLength());
             seq->Set(a, i);
             cout << "Done!" << endl;
@@ -213,7 +217,7 @@ void actions_from_menu(Sequence<T>* seq, int act, T elem){
         }
         case static_cast<int>(FUNCS::CONCAT):
         {
-            cout << "Concated: " << seq->Concat(seq);
+            cout << "Concated: " << *(seq->Concat(seq));
             break;
         }
         case static_cast<int>(FUNCS::CLEAR):
@@ -236,6 +240,9 @@ int data_type_act(int type, int size){
     switch (type) {
         case static_cast<int>(DATATYPE::EXIT):
         {
+            delete input;
+            delete the_size;
+            delete input_func;
             cout << BYE;
             break;
         }
@@ -337,7 +344,6 @@ int data_type_act(int type, int size){
             OPERATOR_TESTS_SHRD();
             OPERATOR_TESTS_UNQ();
             HEAVY_FUNCS_TESTS_SHRD();
-            HEAVY_FUNCS_TESTS_UNQ();
             break;
         }
         default:

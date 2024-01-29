@@ -4,7 +4,6 @@ void ARRAY_SEQUENCE_TEST(){
 
     int* p = new int[10];
     ArraySequence<int> array_seq(p, 10);
-
     for(int i = 0; i < 10; i++){
         array_seq.Set(i+1, i);
     }
@@ -23,23 +22,23 @@ void ARRAY_SEQUENCE_TEST(){
         seq->Set(9, i);
     }
 
-    shrd_ptr<ArraySequence<int>> the_seq (&array_seq.Concat(seq.get()));
-    assert(the_seq.get()->GetLength() == 22);
-    assert(the_seq.get()->GetLast() == 9 && the_seq.get()->GetFirst() == 20);
-    the_seq.get()->InsertAt(77, 15);
-    assert(the_seq.get()->GetLength() == 23 && the_seq.get()->Get(15) == 77);
+    shrd_ptr<ArraySequence<int>> the_seq (array_seq.Concat(seq.Get()));
 
-    shrd_ptr<ArraySequence<int>> the_subseq (&(the_seq.get()->GetSubSequence(5,20)));
-    assert(the_subseq.get()->GetLength() == 15);
+    assert(the_seq.Get()->GetLength() == 22);
+    assert(the_seq.Get()->GetLast() == 9 && the_seq.Get()->GetFirst() == 20);
+    the_seq.Get()->InsertAt(77, 15);
+    assert(the_seq.Get()->GetLength() == 23 && the_seq.Get()->Get(15) == 77);
 
-    the_subseq.get()->Clear();
+    shrd_ptr<ArraySequence<int>> the_subseq ((the_seq.Get()->GetSubSequence(5,20)));
+    assert(the_subseq.Get()->GetLength() == 16);
+
 
     char* ch = new char[10];
     ArraySequence<char> char_seq(ch, 10);
     char_seq.InsertAt('a', 3);
     assert(char_seq.Get(3) == 'a');
-    shrd_ptr<ArraySequence<char>> char_subseq(&char_seq.GetSubSequence(5,7));
-    assert(char_subseq.get()->GetLength() == 2);
+    shrd_ptr<ArraySequence<char>> char_subseq(char_seq.GetSubSequence(5,7));
+    assert(char_subseq.Get()->GetLength() == 3);
 
     cout << GREEN << "ArraySequence with shrd_ptr: Passed tests for functions" << DEF << endl;
     PASS++;

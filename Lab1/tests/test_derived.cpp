@@ -7,5 +7,5 @@ void TEST_DERIVED() {
 
     unq_ptr<ArraySequence<int>> derived_arr_seq(arr_seq);
     unq_ptr<Sequence<int>> base_seq = std::move(derived_arr_seq);
-    unq_ptr<ArraySequence<int>> derived = move(derived_arr_seq);
+    unq_ptr<ArraySequence<int>> derived = std::move(derived_arr_seq);
 }
