@@ -11,7 +11,7 @@ class ISorter{
 
 public:
 
-    virtual Sequence<T>* ISort(Sequence<T>* seq, bool (*comparator)(T,T), int left, int right) = 0;
+    virtual Sequence<T>* Sort(Sequence<T>* seq, bool (*comparator)(T,T), int left, int right) = 0;
 
 };
 

@@ -3,16 +3,19 @@
 #include "quicksort.h"
 #include "bubblesort.h"
 #include "cocktailsort.h"
-#include "genseq.h"
 #include "test_myptrs.h"
 
 using namespace std;
 using namespace chrono;
 typedef high_resolution_clock C;
 
+int* input = new int(0);
+int* the_size = new int(0);
+int* input_func = new int(0);
+
 void mini_main(){
     int type = 0;
-    int* my_size = unq_ptr<int>(new int(0)).get();
+    int* my_size = unq_ptr<int>(new int(0)).Get();
 
     if((type = data()) == 1){
         cout << BYE;
@@ -79,11 +82,11 @@ int data() {
     int flag = 0;
     cout << endl << BLUE << HELLO << DEF;
     cout << (DATA_TYPE) << endl;
-    cout << BLUE_BG << RED << " 1 " << DEF << DEF_BG << BLUE << EXIT_ << DEF << endl;
-    cout << BLUE_BG << RED << " 2 " << DEF << DEF_BG << BLUE << INT_ << DEF << endl;
-    cout << BLUE_BG << RED << " 3 " << DEF << DEF_BG << BLUE << REAL_ << DEF << endl;
-    cout << BLUE_BG << RED << " 4 " << DEF << DEF_BG << BLUE << COMPLEX_ << DEF;
-    cout << BLUE_BG << RED << " 5 " << DEF << DEF_BG << BLUE << CHAR_ << DEF << endl;
+    cout << BLUE_BG << RED << " 1 " << DEF << DEF_BG << BLUE << EXIT << DEF << endl;
+    cout << BLUE_BG << RED << " 2 " << DEF << DEF_BG << BLUE << INT << DEF << endl;
+    cout << BLUE_BG << RED << " 3 " << DEF << DEF_BG << BLUE << REAL << DEF << endl;
+    cout << BLUE_BG << RED << " 4 " << DEF << DEF_BG << BLUE << COMPLEX << DEF;
+    cout << BLUE_BG << RED << " 5 " << DEF << DEF_BG << BLUE << CHAR << DEF << endl;
     cout << BLUE_BG << RED << " 6 " << DEF << DEF_BG << BLUE << TEST << DEF << endl;
     cout << ">> ";
     return check_input_type<int>(input, 0, 6);
@@ -97,11 +100,11 @@ int size(){
 
 void menu(){
     cout << (FUNCSY) << endl;
-    cout << BLUE_BG << RED << " 1 " << DEF << DEF_BG<< BLUE << EXIT_ << DEF << endl;
+    cout << BLUE_BG << RED << " 1 " << DEF << DEF_BG<< BLUE << EXIT << DEF << endl;
     cout << BLUE_BG << RED << " 2 " << DEF << DEF_BG<< BLUE << QUICK << DEF << endl;
     cout << BLUE_BG << RED << " 3 " << DEF << DEF_BG<< BLUE << SHAKER << DEF << endl;
     cout << BLUE_BG << RED << " 4 " << DEF << DEF_BG<< BLUE << BUBBLE << DEF << endl;
-    cout << BLUE_BG << RED << " 5 " << DEF << DEF_BG<< BLUE << SEE_ << DEF << endl;
+    cout << BLUE_BG << RED << " 5 " << DEF << DEF_BG<< BLUE << SEE << DEF << endl;
 }
 
 int funcs(){
@@ -113,13 +116,16 @@ template<typename T>
 void actions_from_menu(Sequence<T>* seq, int act, T elem) {
     switch (act) {
         case static_cast<int>(FUNCS::EXIT): {
+            delete input;
+            delete the_size;
+            delete input_func;
             cout << BYE;
             break;
         }
         case static_cast<int>(FUNCS::QUICKSORT): {
             QuickSort<T> sort;
             auto begin = high_resolution_clock::now();
-            sort.ISort(seq, &my_comparator, 0, (seq->GetLength()-1));
+            sort.Sort(seq, &my_comparator, 0, (seq->GetLength()-1));
             auto end = high_resolution_clock::now();
             auto elapsed = duration_cast<milliseconds>(end - begin);
             cout << BLUE << "Time of sorting by quicksort " << DEF << (elapsed.count()) << BLUE << " ms" << DEF << endl;
@@ -128,7 +134,7 @@ void actions_from_menu(Sequence<T>* seq, int act, T elem) {
         case static_cast<int>(FUNCS::SHAKERSORT): {
             CocktailSort<T> sort;
             auto begin = high_resolution_clock::now();
-            sort.ISort(seq, &my_comparator, 0, (seq->GetLength()-1));
+            sort.Sort(seq, &my_comparator, 0, (seq->GetLength()-1));
             auto end = high_resolution_clock::now();
             auto elapsed = duration_cast<milliseconds>(end - begin);
             cout << BLUE << "Time of sorting by shakersort " << DEF << (elapsed.count()) << BLUE << " ms" << DEF << endl;
@@ -137,7 +143,7 @@ void actions_from_menu(Sequence<T>* seq, int act, T elem) {
         case static_cast<int>(FUNCS::BUBBLESORT): {
             BubbleSort<T> sort;
             auto begin = high_resolution_clock::now();
-            sort.ISort(seq, &my_comparator, 0, (seq->GetLength()-1));
+            sort.Sort(seq, &my_comparator, 0, (seq->GetLength()-1));
             auto end = high_resolution_clock::now();
             auto elapsed = duration_cast<milliseconds>(end - begin);
             cout << BLUE << "Time of sorting by bubblesort " << DEF << (elapsed.count()) << BLUE << " ms" << DEF << endl;
@@ -165,7 +171,7 @@ int data_type_act(int type, int size){
             int* p = new int[size];
             ArraySequence<int> arr(p, size);
             Sequence<int>* seq = &arr;
-            seq = seq_generator(seq, size);
+            seq = SeqGenerator(seq, size);
             cout << "Generated sequence: " << endl;
             cout << *seq;
             int act = 0;
@@ -181,7 +187,7 @@ int data_type_act(int type, int size){
             double* p = new double[size];
             ArraySequence<double> arr(p, size);
             Sequence<double> *seq = &arr;
-            seq = seq_generator(seq, size);
+            seq = SeqGenerator(seq, size);
             cout << "Generated sequence: " << endl;
             cout << *seq;
             menu();
@@ -214,7 +220,7 @@ int data_type_act(int type, int size){
             auto p = new char[size];
             ArraySequence<char> arr(p, size);
             Sequence<char>* seq = &arr;
-            seq = seq_generator(seq, size);
+            seq = SeqGenerator(seq, size);
             cout << "Generated sequence: " << endl;
             cout << *seq;
             int act = 0;
@@ -230,6 +236,13 @@ int data_type_act(int type, int size){
             TEST_BUBBLESORT();
             TEST_SHAKERSORT();
             TEST_QUICKSORT();
+//            TEST_HEAVY_1000();
+//            TEST_HEAVY_5000();
+//            TEST_HEAVY_10000();
+//            TEST_HEAVY_25000();
+//            TEST_HEAVY_50000();
+//            TEST_HEAVY_75000();
+//            TEST_HEAVY_100000();
             break;
         }
         default:

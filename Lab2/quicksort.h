@@ -6,7 +6,7 @@
 template<class T>
 class QuickSort : ISorter<T>{
 public:
-    Sequence<T>* ISort(Sequence<T>*, bool (*comparator)(T,T), int left, int right) override;
+    Sequence<T>* Sort(Sequence<T>*, bool (*comparator)(T,T), int left, int right) override;
     int Partition(Sequence<T>*, int, int);
 };
 
@@ -26,12 +26,12 @@ int QuickSort<T>::Partition(Sequence<T>* seq, int left, int right){
 }
 
 template <class T>
-Sequence<T>* QuickSort<T>::ISort(Sequence<T>* seq, bool (*comparator)(T,T), int left, int right){
+Sequence<T>* QuickSort<T>::Sort(Sequence<T>* seq, bool (*comparator)(T,T), int left, int right){
     if(right > left){
         int index_of_pivot = Partition(seq, left, right);
 
-        ISort(seq, &my_comparator, left, index_of_pivot - 1);
-        ISort(seq, &my_comparator, index_of_pivot + 1, right);
+        Sort(seq, &my_comparator, left, index_of_pivot - 1);
+        Sort(seq, &my_comparator, index_of_pivot + 1, right);
     }
     return seq;
 }

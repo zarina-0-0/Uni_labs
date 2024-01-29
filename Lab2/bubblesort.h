@@ -8,11 +8,11 @@ class BubbleSort : ISorter<T>{
 
 public:
 
-    Sequence<T>* ISort(Sequence<T>*, bool (*comparator)(T,T), int left, int right) override;
+    Sequence<T>* Sort(Sequence<T>*, bool (*comparator)(T,T), int left, int right) override;
 };
 
 template<class T>
-Sequence<T>* BubbleSort<T>::ISort(Sequence<T>* seq, bool (*comparator)(T,T), int left, int right){
+Sequence<T>* BubbleSort<T>::Sort(Sequence<T>* seq, bool (*comparator)(T,T), int left, int right){
     Sequence<T>* res(seq);
     bool flag = true;
     int start = left;

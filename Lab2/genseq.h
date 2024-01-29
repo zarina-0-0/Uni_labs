@@ -5,9 +5,9 @@
 //#include "ArraySequence.h"
 #include "../Lab1/containers_with_myptrs/arrseq_myptrs.h"
 
-template<typename T> Sequence<T>* seq_generator(Sequence<T>* seq, size_t length);
+template<typename T> Sequence<T>* SeqGenerator(Sequence<T>* seq, size_t length);
 template<typename T>
-Sequence<T>* seq_generator(Sequence<T>* seq, size_t length){
+Sequence<T>* SeqGenerator(Sequence<T>* seq, size_t length){
     srand((unsigned) time(NULL));
     Sequence<T>* the_seq(seq);
     for(int i = 0; i < length; i++){

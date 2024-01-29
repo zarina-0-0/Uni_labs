@@ -7,11 +7,11 @@ template<class T>
 class CocktailSort : ISorter<T>{
 
 public:
-    Sequence<T>* ISort(Sequence<T>* seq,bool (*comparator)(T,T), int left, int right) override;
+    Sequence<T>* Sort(Sequence<T>* seq,bool (*comparator)(T,T), int left, int right) override;
 };
 
 template<class T>
-Sequence<T>* CocktailSort<T>::ISort(Sequence<T>* seq, bool (*comparator)(T,T), int left, int right){
+Sequence<T>* CocktailSort<T>::Sort(Sequence<T>* seq, bool (*comparator)(T,T), int left, int right){
     Sequence<T>* res(seq);
     bool swapped = true;
     int start = left;
